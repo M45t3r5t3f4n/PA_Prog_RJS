@@ -4,5 +4,8 @@ import javax.validation.constraints.NotBlank
 
 
 class TodoItemFormData {
-    var title: @NotBlank String = ""
+
+    @NotBlank
+    var title: String = ""
+    var amount: Double = 0.00
 }

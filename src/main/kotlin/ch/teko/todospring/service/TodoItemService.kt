@@ -20,7 +20,7 @@ class TodoItemService {
 
     fun getTodoItems(): List<TodoItemDto> {
         return repository.findAll().map {
-            TodoItemDto(it.id, it.title, it.completed)
+            TodoItemDto(it.id, it.title, it.amount, it.completed)
         }
     }
 
@@ -58,8 +58,9 @@ class TodoItemService {
         repository.deleteById(id)
     }
 
-    fun createTodoItem(title: String) {
-        repository.save(TodoItem(title = title))
+    fun createTodoItem(title: String, amount : Double) {
+        repository.save(TodoItem(title = title, amount = amount))
+
     }
 
     fun getTodoItems(filter: ListFilter): List<TodoItemDto> {
@@ -71,6 +72,6 @@ class TodoItemService {
     }
 
     private fun convertToDto(todoItems: List<TodoItem>): List<TodoItemDto> {
-        return todoItems.map { TodoItemDto(it.id, it.title, it.completed) }
+        return todoItems.map { TodoItemDto(it.id, it.title, it.amount, it.completed) }
     }
 }

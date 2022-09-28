@@ -51,7 +51,7 @@ class TodoItemController {
 
     @PostMapping
     fun addNewTodoItem(@Valid @ModelAttribute("item") formData: TodoItemFormData): String? {
-        service.createTodoItem(formData.title)
+        service.createTodoItem(formData.title, formData.amount)
         return "redirect:/"
     }
 

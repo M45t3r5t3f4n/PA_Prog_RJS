@@ -12,6 +12,7 @@ class TodoItem(
     @GeneratedValue
     val id: Long? = null,
     @NotBlank
+    val amount: Double,
     val title: String = "",
     var completed: Boolean = false
 )

@@ -44,7 +44,7 @@ class TodoItemRestController {
 
     @PostMapping
     fun addNewTodoItem(@Valid @RequestBody todoItemDto: TodoItemDto) {
-        service.createTodoItem(todoItemDto.title)
+        service.createTodoItem(todoItemDto.title, todoItemDto.amount)
     }
 
     @PutMapping("/{id}/toggle")
