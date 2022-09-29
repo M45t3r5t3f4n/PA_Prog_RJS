@@ -3,22 +3,27 @@ package ch.teko.todospring.service
 import ch.teko.todospring.controller.ui.dto.TodoItemDto
 import ch.teko.todospring.controller.ui.dto.ListFilter
 import ch.teko.todospring.controller.ui.dto.ListFilter.*
-import ch.teko.todospring.db.TodoItem
-import ch.teko.todospring.db.repository.TodoItemRepository
+import ch.teko.todospring.db.CalculatorItem
+import ch.teko.todospring.db.repository.CalculatorItemRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class TodoItemService {
+class CalculatorItemService {
 
     @Autowired
-    lateinit var repository: TodoItemRepository
+    lateinit var repository: CalculatorItemRepository
 
     fun getNumberOfCompletedItems(): Int {
         return repository.countAllByCompleted(true)
     }
 
-    fun getTodoItems(): List<TodoItemDto> {
+    fun getAusgabeItem(): List<TodoItemDto> {
+        return repository.findAll().map {
+            TodoItemDto(it.id, it.title, it.amount, it.completed)
+        }
+    }
+    fun getEingabeItem(): List<TodoItemDto> {
         return repository.findAll().map {
             TodoItemDto(it.id, it.title, it.amount, it.completed)
         }
@@ -59,11 +64,11 @@ class TodoItemService {
     }
 
     fun createTodoItem(title: String, amount : Double) {
-        repository.save(TodoItem(title = title, amount = amount))
+        repository.save(CalculatorItem(title = title, amount = amount))
 
     }
 
-    fun getTodoItems(filter: ListFilter): List<TodoItemDto> {
+    fun getAusgabeItem(filter: ListFilter): List<TodoItemDto> {
         return when (filter) {
             ALL -> convertToDto(repository.findAll())
             ACTIVE -> convertToDto(repository.findAllByCompleted(false))
@@ -71,7 +76,7 @@ class TodoItemService {
         }
     }
 
-    private fun convertToDto(todoItems: List<TodoItem>): List<TodoItemDto> {
-        return todoItems.map { TodoItemDto(it.id, it.title, it.amount, it.completed) }
+    private fun convertToDto(calculatorItems: List<CalculatorItem>): List<TodoItemDto> {
+        return calculatorItems.map { TodoItemDto(it.id, it.title, it.amount, it.completed) }
     }
 }

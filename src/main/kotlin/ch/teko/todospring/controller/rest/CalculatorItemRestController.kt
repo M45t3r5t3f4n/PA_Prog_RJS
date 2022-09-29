@@ -1,35 +1,32 @@
 package ch.teko.todospring.controller.rest
 
-import ch.teko.todospring.controller.ui.dto.ListFilter
 import ch.teko.todospring.controller.ui.dto.ListFilter.*
 import ch.teko.todospring.controller.ui.dto.TodoItemDto
-import ch.teko.todospring.controller.ui.dto.TodoItemFormData
-import ch.teko.todospring.service.TodoItemService
+import ch.teko.todospring.service.CalculatorItemService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api")
-class TodoItemRestController {
+class CalculatorItemRestController {
 
     @Autowired
-    lateinit var service: TodoItemService
+    lateinit var service: CalculatorItemService
 
     @GetMapping
     fun index(): List<TodoItemDto> {
-        return service.getTodoItems(ALL)
+        return service.getAusgabeItem(ALL)
     }
 
     @GetMapping("/active")
     fun indexActive(): List<TodoItemDto> {
-        return service.getTodoItems(ALL)
+        return service.getAusgabeItem(ALL)
     }
 
     @GetMapping("/completed")
     fun indexCompleted(): List<TodoItemDto> {
-        return service.getTodoItems(ALL)
+        return service.getAusgabeItem(ALL)
     }
 
     @DeleteMapping("/completed")

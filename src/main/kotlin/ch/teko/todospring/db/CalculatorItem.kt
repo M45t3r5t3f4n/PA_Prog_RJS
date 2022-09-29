@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank
 
 
 @Entity
-class TodoItem(
+class CalculatorItem(
     @Id
     @GeneratedValue
     val id: Long? = null,

@@ -3,7 +3,7 @@ package ch.teko.todospring.controller.ui
 import ch.teko.todospring.controller.ui.dto.ListFilter
 import ch.teko.todospring.controller.ui.dto.ListFilter.*
 import ch.teko.todospring.controller.ui.dto.TodoItemFormData
-import ch.teko.todospring.service.TodoItemService
+import ch.teko.todospring.service.CalculatorItemService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -13,10 +13,10 @@ import javax.validation.Valid
 
 @Controller
 @RequestMapping("/")
-class TodoItemController {
+class CalculatorItemController {
 
     @Autowired
-    lateinit var service: TodoItemService
+    lateinit var service: CalculatorItemService
 
     @GetMapping
     fun index(model: Model): String? {
@@ -69,10 +69,11 @@ class TodoItemController {
 
     private fun addAttributesForIndex(model: Model, listFilter: ListFilter) {
         model.addAttribute("item", TodoItemFormData())
-        model.addAttribute("todos", service.getTodoItems())
+        model.addAttribute("todos", service.getAusgabeItem())
+        model.addAttribute("todos", service.getEingabeItem())
         model.addAttribute("totalNumberOfItems", service.count())
         model.addAttribute("filter", listFilter)
-        model.addAttribute("todos", service.getTodoItems(listFilter))
+        model.addAttribute("todos", service.getAusgabeItem(listFilter))
         model.addAttribute("numberOfActiveItems", service.getNumberOfActiveItems())
         model.addAttribute("numberOfCompletedItems", service.getNumberOfCompletedItems())
     }
