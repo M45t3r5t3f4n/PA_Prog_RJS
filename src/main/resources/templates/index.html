@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Template • TodoMVC</title>
+    <title>Finanzrechner</title>
     <link rel="stylesheet" th:href="@{/webjars/todomvc-common/base.css}">
     <link rel="stylesheet" th:href="@{/webjars/todomvc-app-css/index.css}">
     <!-- CSS overrides - remove if you don't need it -->
@@ -17,10 +17,12 @@
         <h1>todos</h1>
         <form th:action="@{/}" method="post" th:object="${item}">
             <input id="title" placeholder="Beschreibung" autofocus th:field="*{title}" required="required">
-            <input id="amount" placeholder="Betrag" autofocus th:field="*{amount}" type="number" min="0">
+            <input id="amount" placeholder="Betrag" autofocus th:field="*{amount}" type="number">
             <button id="submitOk" th:action="@{/}" method="post" th:object="${item}" > Abdrücken </button>
 
         </form>
+        <span>So viel Geld kannst du verjätten:</span>
+        <span th:text="${sumOfAmount}"> </span>
     </header>
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main" th:if="${totalNumberOfItems > 0}">
@@ -84,12 +86,8 @@
     </footer>
 </section>
 <footer class="info">
-    <p>Double-click to edit a todo</p>
-    <!-- Remove the below line ↓ -->
-    <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-    <!-- Change this out with your name and url ↓ -->
-    <p>Created by <a href="http://todomvc.com">you</a></p>
-    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+<p>Dieses qualitativ hochstehende und vertrauenswürdige Programm wurde für Sie entwickelt von JRS <p/>
+    <p>Jonas Weber - Ruben Palillo - Stefan Ackermann</p>
 </footer>
 <!-- Scripts here. Don't remove ↓ -->
 <script th:src="@{/webjars/todomvc-common/base.js}"></script>

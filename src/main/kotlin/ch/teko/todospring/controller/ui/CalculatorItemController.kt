@@ -22,6 +22,9 @@ class CalculatorItemController {
     fun index(model: Model): String? {
         addAttributesForIndex(model, ALL)
         service.getNumberOfActiveItems()
+        val betragItems = service.getAll()
+        model.addAttribute("sumOfAmount", betragItems.sumOf {it.amount})
+
         return "index"
     }
 
@@ -76,6 +79,8 @@ class CalculatorItemController {
         model.addAttribute("todos", service.getAusgabeItem(listFilter))
         model.addAttribute("numberOfActiveItems", service.getNumberOfActiveItems())
         model.addAttribute("numberOfCompletedItems", service.getNumberOfCompletedItems())
+
+
     }
 
 }

@@ -17,6 +17,11 @@ class CalculatorItemService {
     fun getNumberOfCompletedItems(): Int {
         return repository.countAllByCompleted(true)
     }
+    fun getAll(): List<BetragItemDto> {
+        return repository.findAll().map {
+            BetragItemDto(it.id, it.title, it.amount, it.completed)
+        }
+    }
 
     fun getAusgabeItem(): List<BetragItemDto> {
         return repository.findAll().map {

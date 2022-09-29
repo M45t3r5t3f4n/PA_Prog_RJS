@@ -43,10 +43,7 @@ class CalculatorItemRestController {
     fun addNewPositiverBetragItem(@Valid @RequestBody betragItemDto: BetragItemDto) {
         service.createPositiverBetragItem(betragItemDto.title, betragItemDto.amount)
     }
-    @PostMapping
-    fun addNewNegativerBetragItem(@Valid @RequestBody betragItemDto: BetragItemDto) {
-        service.createNegativerBetragItem(betragItemDto.title, betragItemDto.amount)
-    }
+
     @PutMapping("/{id}/toggle")
     fun toggleSelection(@PathVariable("id") id: Long) {
         service.toggleSelectedItem(id)
