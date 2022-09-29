@@ -1,4 +1,4 @@
-package ch.teko.todospring.controller.rest
+package ch.teko.todospring.db.rest
 
 import ch.teko.todospring.controller.ui.dto.ListFilter.*
 import ch.teko.todospring.controller.ui.dto.BetragItemDto

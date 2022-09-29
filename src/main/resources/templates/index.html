@@ -14,21 +14,21 @@
 <body>
 <section class="todoapp">
     <header class="header">
-        <h1>todos</h1>
+        <h1>Finanzübersicht</h1>
         <form th:action="@{/}" method="post" th:object="${item}">
             <input id="title" placeholder="Beschreibung" autofocus th:field="*{title}" required="required">
             <input id="amount" placeholder="Betrag" autofocus th:field="*{amount}" type="number">
             <button id="submitOk" th:action="@{/}" method="post" th:object="${item}" > Abdrücken </button>
 
         </form>
-        <span>So viel Geld kannst du verjätten:</span>
+        <span>Kontostand:</span>
         <span th:text="${sumOfAmount}"> </span>
     </header>
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main" th:if="${totalNumberOfItems > 0}">
         <form th:action="@{/toggle-all}" th:method="put">
             <input id="toggle-all" class="toggle-all" type="checkbox"
-                   onclick="this.form.submit()">
+                     onclick="this.form.submit()">
             <label for="toggle-all">Mark all as complete</label>
         </form>
         <ul class="todo-list" th:remove="all-but-first">
