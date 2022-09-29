@@ -1,6 +1,6 @@
 package ch.teko.todospring.service
 
-import ch.teko.todospring.controller.ui.dto.TodoItemDto
+import ch.teko.todospring.controller.ui.dto.BetragItemDto
 import ch.teko.todospring.controller.ui.dto.ListFilter
 import ch.teko.todospring.controller.ui.dto.ListFilter.*
 import ch.teko.todospring.db.CalculatorItem
@@ -18,14 +18,14 @@ class CalculatorItemService {
         return repository.countAllByCompleted(true)
     }
 
-    fun getAusgabeItem(): List<TodoItemDto> {
+    fun getAusgabeItem(): List<BetragItemDto> {
         return repository.findAll().map {
-            TodoItemDto(it.id, it.title, it.amount, it.completed)
+            BetragItemDto(it.id, it.title, it.amount, it.completed)
         }
     }
-    fun getEingabeItem(): List<TodoItemDto> {
+    fun getEingabeItem(): List<BetragItemDto> {
         return repository.findAll().map {
-            TodoItemDto(it.id, it.title, it.amount, it.completed)
+            BetragItemDto(it.id, it.title, it.amount, it.completed)
         }
     }
 
@@ -63,12 +63,16 @@ class CalculatorItemService {
         repository.deleteById(id)
     }
 
-    fun createTodoItem(title: String, amount : Double) {
+    fun createPositiverBetragItem(title: String, amount : Double) {
         repository.save(CalculatorItem(title = title, amount = amount))
 
     }
 
-    fun getAusgabeItem(filter: ListFilter): List<TodoItemDto> {
+    fun createNegativerBetragItem(title: String, amount : Double) {
+        repository.save(CalculatorItem(title = title, amount = amount))
+
+    }
+    fun getAusgabeItem(filter: ListFilter): List<BetragItemDto> {
         return when (filter) {
             ALL -> convertToDto(repository.findAll())
             ACTIVE -> convertToDto(repository.findAllByCompleted(false))
@@ -76,7 +80,7 @@ class CalculatorItemService {
         }
     }
 
-    private fun convertToDto(calculatorItems: List<CalculatorItem>): List<TodoItemDto> {
-        return calculatorItems.map { TodoItemDto(it.id, it.title, it.amount, it.completed) }
+    private fun convertToDto(calculatorItems: List<CalculatorItem>): List<BetragItemDto> {
+        return calculatorItems.map { BetragItemDto(it.id, it.title, it.amount, it.completed) }
     }
 }

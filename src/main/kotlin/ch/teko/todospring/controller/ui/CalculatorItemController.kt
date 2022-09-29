@@ -2,7 +2,7 @@ package ch.teko.todospring.controller.ui
 
 import ch.teko.todospring.controller.ui.dto.ListFilter
 import ch.teko.todospring.controller.ui.dto.ListFilter.*
-import ch.teko.todospring.controller.ui.dto.TodoItemFormData
+import ch.teko.todospring.controller.ui.dto.BetragItemFormData
 import ch.teko.todospring.service.CalculatorItemService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -50,8 +50,8 @@ class CalculatorItemController {
     }
 
     @PostMapping
-    fun addNewTodoItem(@Valid @ModelAttribute("item") formData: TodoItemFormData): String? {
-        service.createTodoItem(formData.title, formData.amount)
+    fun addNewTodoItem(@Valid @ModelAttribute("item") formData: BetragItemFormData): String? {
+        service.createPositiverBetragItem(formData.title, formData.amount)
         return "redirect:/"
     }
 
@@ -68,7 +68,7 @@ class CalculatorItemController {
     }
 
     private fun addAttributesForIndex(model: Model, listFilter: ListFilter) {
-        model.addAttribute("item", TodoItemFormData())
+        model.addAttribute("item", BetragItemFormData())
         model.addAttribute("todos", service.getAusgabeItem())
         model.addAttribute("todos", service.getEingabeItem())
         model.addAttribute("totalNumberOfItems", service.count())

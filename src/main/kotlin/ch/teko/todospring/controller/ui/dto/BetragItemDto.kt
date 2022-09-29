@@ -1,6 +1,6 @@
 package ch.teko.todospring.controller.ui.dto
 
-class TodoItemDto(
+class BetragItemDto(
     val id: Long?,
     val title: String,
     val amount: Double,

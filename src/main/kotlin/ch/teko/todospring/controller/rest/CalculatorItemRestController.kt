@@ -1,7 +1,7 @@
 package ch.teko.todospring.controller.rest
 
 import ch.teko.todospring.controller.ui.dto.ListFilter.*
-import ch.teko.todospring.controller.ui.dto.TodoItemDto
+import ch.teko.todospring.controller.ui.dto.BetragItemDto
 import ch.teko.todospring.service.CalculatorItemService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -15,17 +15,17 @@ class CalculatorItemRestController {
     lateinit var service: CalculatorItemService
 
     @GetMapping
-    fun index(): List<TodoItemDto> {
+    fun index(): List<BetragItemDto> {
         return service.getAusgabeItem(ALL)
     }
 
     @GetMapping("/active")
-    fun indexActive(): List<TodoItemDto> {
+    fun indexActive(): List<BetragItemDto> {
         return service.getAusgabeItem(ALL)
     }
 
     @GetMapping("/completed")
-    fun indexCompleted(): List<TodoItemDto> {
+    fun indexCompleted(): List<BetragItemDto> {
         return service.getAusgabeItem(ALL)
     }
 
@@ -40,10 +40,13 @@ class CalculatorItemRestController {
     }
 
     @PostMapping
-    fun addNewTodoItem(@Valid @RequestBody todoItemDto: TodoItemDto) {
-        service.createTodoItem(todoItemDto.title, todoItemDto.amount)
+    fun addNewPositiverBetragItem(@Valid @RequestBody betragItemDto: BetragItemDto) {
+        service.createPositiverBetragItem(betragItemDto.title, betragItemDto.amount)
     }
-
+    @PostMapping
+    fun addNewNegativerBetragItem(@Valid @RequestBody betragItemDto: BetragItemDto) {
+        service.createNegativerBetragItem(betragItemDto.title, betragItemDto.amount)
+    }
     @PutMapping("/{id}/toggle")
     fun toggleSelection(@PathVariable("id") id: Long) {
         service.toggleSelectedItem(id)
