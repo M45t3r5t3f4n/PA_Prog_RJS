@@ -10,23 +10,24 @@
     <link rel="stylesheet" th:href="@{/webjars/todomvc-app-css/index.css}">
     <!-- CSS overrides - remove if you don't need it -->
     <link rel="stylesheet" href="css/app.css">
+    <style>
+        body    {background-color: powderblue;}
+        h1     {color: black;}
+        p        {color: red; font-size: 100%}
+        #title {color: black; font-size: 100%}
+        #amount {color: black; font-size: 100%}
+        #submitOk {color: black; font-size: 100%; background-color: #bbbbbb}
+
+    </style>
 
 </head>
 <body>
-<style>
-    body    {background-color: powderblue;}
-    h1     {color: black;}
-    p        {color: red; font-size: 100%}
-    #title {color: black; font-size: 100%}
-    #amount {color: black; font-size: 100%}
-    #submitOk {color: black; font-size: 100%}
 
-</style>
 <section class="todoapp">
     <header class="header">
         <h1>Finanzübersicht</h1>
-        <span style="color:black;font-weight:bold;font-size: 160%">Kontostand:</span>
-        <span th:text="${sumOfAmount}" style="font-size: 160%"> </span>
+        <span style="color:black;font-weight:bold;font-size: 160%;">Kontostand (CHF):</span>
+        <span th:text="${sumOfAmount}" style="font-size: 160%; font-weight: bold"> </span>
         <form th:action="@{/}" method="post" th:object="${item}">
             <input id="title" placeholder="Beschreibung" autofocus th:field="*{title}" required="required">
             <input id="amount" placeholder="Betrag" autofocus th:field="*{amount}" type="number">
@@ -67,14 +68,14 @@
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
     <footer class="footer" th:if="${totalNumberOfItems > 0}">
-        <!-- This should be `0 items left` by default -->
+        <!-- This should be `0 items left` by default
         <th:block th:unless="${numberOfActiveItems == 1}">
             <span class="todo-count"><strong th:text="${numberOfActiveItems}">0</strong> items left</span>
         </th:block>
         <th:block th:if="${numberOfActiveItems == 1}">
-            <span class="todo-count"><strong>1</strong> item left</span>
-        </th:block>
-        <!-- Remove this if you don't implement routing -->
+            <span class="todo-count"><strong>1</strong></span>
+        </th:block> -->
+        <!-- Remove this if you don't implement routing
         <ul class="filters">
             <li>
                 <a th:href="@{/}"
@@ -88,12 +89,12 @@
                 <a th:href="@{/completed}"
                    th:classappend="${filter.name() == 'COMPLETED'?'selected':''}">Completed</a>
             </li>
-        </ul>
+        </ul> -->
         <!-- Hidden if no completed items are left ↓ -->
-        <form th:action="@{/completed}" th:method="delete"
+      <!--  <form th:action="@{/completed}" th:method="delete"
               th:if="${numberOfCompletedItems > 0}">
             <button class="clear-completed">Clear completed</button>
-        </form>
+        </form> -->
     </footer>
 </section>
 <footer class="info">
