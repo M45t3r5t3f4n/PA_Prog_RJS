@@ -10,19 +10,30 @@
     <link rel="stylesheet" th:href="@{/webjars/todomvc-app-css/index.css}">
     <!-- CSS overrides - remove if you don't need it -->
     <link rel="stylesheet" href="css/app.css">
+
 </head>
 <body>
+<style>
+    body    {background-color: powderblue;}
+    h1     {color: black;}
+    p        {color: red; font-size: 100%}
+    #title {color: black; font-size: 100%}
+    #amount {color: black; font-size: 100%}
+    #submitOk {color: black; font-size: 100%}
+
+</style>
 <section class="todoapp">
     <header class="header">
         <h1>Finanzübersicht</h1>
+        <span style="color:black;font-weight:bold;font-size: 160%">Kontostand:</span>
+        <span th:text="${sumOfAmount}" style="font-size: 160%"> </span>
         <form th:action="@{/}" method="post" th:object="${item}">
             <input id="title" placeholder="Beschreibung" autofocus th:field="*{title}" required="required">
             <input id="amount" placeholder="Betrag" autofocus th:field="*{amount}" type="number">
-            <button id="submitOk" th:action="@{/}" method="post" th:object="${item}" > Abdrücken </button>
+            <button id="submitOk" th:action="@{/}" method="post" th:object="${item}" > Absenden </button>
 
         </form>
-        <span>Kontostand:</span>
-        <span th:text="${sumOfAmount}"> </span>
+
     </header>
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main" th:if="${totalNumberOfItems > 0}">
