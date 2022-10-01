@@ -73,7 +73,6 @@ class CalculatorItemController {
 
     private fun addAttributesForIndex(model: Model, listFilter: ListFilter) {
         model.addAttribute("item", BetragItemFormData())
-        model.addAttribute("todos", service.getAusgabeItem())
         model.addAttribute("todos", service.getEingabeItem())
         model.addAttribute("totalNumberOfItems", service.count())
         model.addAttribute("filter", listFilter)

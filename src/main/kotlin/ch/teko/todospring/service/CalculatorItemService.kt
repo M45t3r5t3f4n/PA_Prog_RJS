@@ -1,5 +1,6 @@
 package ch.teko.todospring.service
 
+import java.time.Month
 import ch.teko.todospring.controller.ui.dto.BetragItemDto
 import ch.teko.todospring.controller.ui.dto.ListFilter
 import ch.teko.todospring.controller.ui.dto.ListFilter.*
@@ -19,18 +20,18 @@ class CalculatorItemService {
     }
     fun getAll(): List<BetragItemDto> {
         return repository.findAll().map {
-            BetragItemDto(it.id, it.title, it.amount, it.completed)
+            BetragItemDto(it.id, it.title, it.amount, it.completed /*it.month*/)
         }
     }
 
     fun getAusgabeItem(): List<BetragItemDto> {
         return repository.findAll().map {
-            BetragItemDto(it.id, it.title, it.amount, it.completed)
+            BetragItemDto(it.id, it.title, it.amount, it.completed /*it.month*/)
         }
     }
     fun getEingabeItem(): List<BetragItemDto> {
         return repository.findAll().map {
-            BetragItemDto(it.id, it.title, it.amount, it.completed)
+            BetragItemDto(it.id, it.title, it.amount, it.completed, /*it.month*/)
         }
     }
 
@@ -68,8 +69,8 @@ class CalculatorItemService {
         repository.deleteById(id)
     }
 
-    fun createBetragItem(title: String, amount : Double) {
-        repository.save(CalculatorItem(title = title, amount = amount))
+    fun createBetragItem(title: String, amount : Double, /*month: Month*/) {
+        repository.save(CalculatorItem(title = title, amount = amount, /*month = month*/))
 
     }
 
@@ -83,6 +84,6 @@ class CalculatorItemService {
     }
 
     private fun convertToDto(calculatorItems: List<CalculatorItem>): List<BetragItemDto> {
-        return calculatorItems.map { BetragItemDto(it.id, it.title, it.amount, it.completed) }
+        return calculatorItems.map { BetragItemDto(it.id, it.title, it.amount, it.completed, /*it.month*/) }
     }
 }

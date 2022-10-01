@@ -14,11 +14,6 @@ class CalculatorItemRestController {
     @Autowired
     lateinit var service: CalculatorItemService
 
-    @GetMapping
-    fun index(): List<BetragItemDto> {
-        return service.getAusgabeItem(ALL)
-    }
-
     @GetMapping("/active")
     fun indexActive(): List<BetragItemDto> {
         return service.getAusgabeItem(ALL)
@@ -41,7 +36,7 @@ class CalculatorItemRestController {
 
     @PostMapping
     fun addNewBetragItem(@Valid @RequestBody betragItemDto: BetragItemDto) {
-        service.createBetragItem(betragItemDto.title, betragItemDto.amount)
+        service.createBetragItem(betragItemDto.title, betragItemDto.amount, /*betragItemDto.month*/)
     }
 
     @PutMapping("/{id}/toggle")
