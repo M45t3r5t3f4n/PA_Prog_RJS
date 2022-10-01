@@ -27,7 +27,11 @@
     <header class="header">
         <h1>Finanzübersicht</h1>
         <span style="color:black;font-weight:bold;font-size: 160%;">Kontostand (CHF):</span>
-        <span th:text="${sumOfAmount}" style="font-size: 160%; font-weight: bold"> </span>
+        <span th:text="${sumOfAmount}" style="font-size: 160%; font-weight: bold"> </span> <br>
+        <span style="color:black;font-weight:bold;font-size: 100%;">Einnahmen (CHF):</span>
+        <span th:text="${sumOfEinnahmen}" style="font-size: 100%; font-weight: bold"> </span> <br>
+        <span style="color:black;font-weight:bold;font-size: 100%;">Ausgaben (CHF):</span>
+        <span th:text="${sumOfAusgaben}" style="font-size: 100%; font-weight: bold"> </span>
         <form th:action="@{/}" method="post" th:object="${item}">
             <input id="title" placeholder="Beschreibung" autofocus th:field="*{title}" required="required">
             <input id="amount" placeholder="Betrag" autofocus th:field="*{amount}" type="number">
@@ -66,7 +70,7 @@
             </li>
         </ul>
     </section>
-    
+
     </footer>
 </section>
 <footer class="info">

@@ -24,7 +24,8 @@ class CalculatorItemController {
         service.getNumberOfActiveItems()
         val betragItems = service.getAll()
         model.addAttribute("sumOfAmount", betragItems.sumOf {it.amount})
-
+        model.addAttribute("sumOfEinnahmen", betragItems.filter { it.amount > 0}.sumOf {it.amount})
+        model.addAttribute("sumOfAusgaben", betragItems.filter { it.amount < 0 }.sumOf {it.amount})
         return "index"
     }
 
@@ -54,7 +55,7 @@ class CalculatorItemController {
 
     @PostMapping
     fun addNewTodoItem(@Valid @ModelAttribute("item") formData: BetragItemFormData): String? {
-        service.createPositiverBetragItem(formData.title, formData.amount)
+        service.createBetragItem(formData.title, formData.amount)
         return "redirect:/"
     }
 

@@ -68,15 +68,12 @@ class CalculatorItemService {
         repository.deleteById(id)
     }
 
-    fun createPositiverBetragItem(title: String, amount : Double) {
+    fun createBetragItem(title: String, amount : Double) {
         repository.save(CalculatorItem(title = title, amount = amount))
 
     }
 
-    fun createNegativerBetragItem(title: String, amount : Double) {
-        repository.save(CalculatorItem(title = title, amount = amount))
 
-    }
     fun getAusgabeItem(filter: ListFilter): List<BetragItemDto> {
         return when (filter) {
             ALL -> convertToDto(repository.findAll())
